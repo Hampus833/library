@@ -1,5 +1,2 @@
-Harry Potter and The Chamber of secrets,
-J.K Rowling,
-
-Scott Pilgrim and the infinite sadness,
-Bryan Lee O'Malley,
+Harry Potter and The Chamber of secrets, J.K Rowling,
+Scott Pilgrim and the infinite sadness, Bryan Lee O'Malley,

@@ -7,7 +7,7 @@
 
 void Library::displayBooks()
 {
-    for (Book book : library)
+    for (Book &book : library)
     {
         book.displayBook();
     }
@@ -59,4 +59,9 @@ void Library::returnBook(std::string title)
 
 void writeBooks(std::string filename)
 {
+}
+
+void Library::addToLibrary(Book newBook)
+{
+    library.emplace_back(newBook);
 }

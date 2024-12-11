@@ -1,7 +1,7 @@
 #ifndef LIBRARY_H
 #define LIBRARY_H
 #include <vector>
-#include "Book.h"
+#include "../book/Book.h"
 
 class Library
 {
@@ -14,6 +14,7 @@ public:
     void lendBook(std::string title);
     void returnBook(std::string title);
     void writeBooks(std::string filename);
+    void addToLibrary(Book newBook);
 };
 
 #endif
