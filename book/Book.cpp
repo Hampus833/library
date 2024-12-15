@@ -39,11 +39,11 @@ void Book::borrowBook(Book *book)
     if (!book->borrowed)
     {
         borrowed = true;
-        std::cout << "Book has been borrowed" << std::endl;
+        std::cout << title << " has been borrowed" << std::endl;
     }
     else
     {
-        std::cout << "Book is already borrowed" << std::endl;
+        std::cout << title << " is already borrowed" << std::endl;
     }
 }
 
@@ -52,11 +52,11 @@ void Book::returnBook(Book *book)
     if (book->borrowed)
     {
         borrowed = false;
-        std::cout << "Book has been returned" << std::endl;
+        std::cout << title << " has been returned" << std::endl;
     }
     else
     {
-        std::cout << "Book isn't borrowed" << std::endl;
+        std::cout << title << " isn't borrowed" << std::endl;
     }
 }
 

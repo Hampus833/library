@@ -51,7 +51,6 @@ void borrowBook(Library &library)
     std::string bookToBorrow;
     std::cout << "Please enter the book you want to borrow" << std::endl;
 
-    std::cin.ignore();
     std::getline(std::cin, bookToBorrow);
 
     bool bookExists = checkBookExists(library, bookToBorrow);
@@ -62,9 +61,26 @@ void borrowBook(Library &library)
     }
     else
     {
-        std::cout << "Book not found" << std::endl;
+        std::cout << bookToBorrow << " not found" << std::endl;
         displayMenu();
     }
+}
+
+void borrowBook(Library &library, std::vector<std::string> titles)
+{
+
+    for (std::string &title : titles)
+    {
+        if (checkBookExists(library, title))
+        {
+            library.lendBook(title);
+        }
+        else
+        {
+            std::cout << title << " not found" << std::endl;
+        }
+    }
+    displayMenu();
 }
 
 bool checkBookExists(Library &library, std::string bookToCheck)
@@ -101,7 +117,7 @@ void returnBook(Library &library)
     }
     else
     {
-        std::cout << "Book not found" << std::endl;
+        std::cout << bookToReturn << " not found" << std::endl;
         displayMenu();
     }
 }

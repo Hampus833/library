@@ -5,18 +5,15 @@
 
 int main()
 {
-
     std::string filename = "./database/database.txt";
-    // TODO
-    // fixa så att man inte kan lägga till en bok som redan finns i biblioteket
-    // Fixa function overloading biten
-    // Lista ut vad som ska vara med i destructor (tilde) funktionerna i mina klasser
+
     Library library;
     library.loadBooks(filename);
     Library *libraryptr = &library;
 
     displayMenu();
 
+    std::vector<std::string> books;
     int userInput;
 
     while (true)
@@ -29,7 +26,48 @@ int main()
                 addBook(*libraryptr);
                 break;
             case 2:
-                borrowBook(*libraryptr);
+                std::cout << "Do you wish to borrow multiple books y/n?" << std::endl;
+                char choice;
+
+                std::cin >> choice;
+
+                while (true)
+                {
+                    if (choice == 'y')
+                    {
+                        std::string bookTitle;
+
+                        std::cout << "Enter the book you want to borrow" << std::endl;
+                        std::cin.ignore();
+                        std::getline(std::cin, bookTitle);
+                        books.emplace_back(bookTitle);
+
+                        std::cout << "Do you want to borrow another book? y/n" << std::endl;
+                        std::cin >> choice;
+                    }
+                    else if (choice == 'n')
+                    {
+                        break;
+                    }
+                    else if (choice != 'n' || choice != 'y')
+                    {
+                        std::cout << "Please only enter y or n" << std::endl;
+                        std::cin.clear();
+                        std::cin.ignore(10000, '\n');
+                        std::cin >> choice;
+                    }
+                }
+
+                if (!books.empty())
+                {
+                    borrowBook(*libraryptr, books);
+                    books.clear();
+                }
+                else
+                {
+                    std::cin.ignore();
+                    borrowBook(*libraryptr);
+                }
                 break;
             case 3:
                 returnBook(*libraryptr);

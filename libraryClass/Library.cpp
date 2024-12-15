@@ -54,7 +54,7 @@ void Library::lendBook(std::string title)
         }
         else if (book.isBorrowed() && book.getTitle() == title)
         {
-            std::cout << "Book is already borrowed" << std::endl;
+            std::cout << title << " is already borrowed" << std::endl;
         }
     }
 }

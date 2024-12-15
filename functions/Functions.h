@@ -9,6 +9,8 @@ void addBook(Library &library);
 
 void borrowBook(Library &library);
 
+void borrowBook(Library &library, std::vector<std::string> titles);
+
 void returnBook(Library &library);
 
 void displayBooks(Library library);
