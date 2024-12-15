@@ -15,4 +15,8 @@ void displayBooks(Library library);
 
 bool checkBookExists(Library &library, std::string bookToCheck);
 
+void availableBooks(Library &library, int action);
+
+void exitLibrary(Library &library);
+
 #endif

@@ -5,12 +5,14 @@
 
 int main()
 {
-    // TODO stringtolower när man lånar och lämnar tillbaka böcker så man inte måste skriva exakt rätt med stora och små bokstäver.
-    // fixa så att exit funktionen faktiskt exitar appen.
-    // Fixa så att alla böcker man lägger till skrivs in i databasen
+
+    std::string filename = "./database/database.txt";
+    // TODO
+    // fixa så att man inte kan lägga till en bok som redan finns i biblioteket
     // Fixa function overloading biten
+    // Lista ut vad som ska vara med i destructor (tilde) funktionerna i mina klasser
     Library library;
-    library.loadBooks("./database/database.txt");
+    library.loadBooks(filename);
     Library *libraryptr = &library;
 
     displayMenu();
@@ -36,7 +38,9 @@ int main()
                 displayBooks(library);
                 break;
             case 5:
-                std::cout << "exiting" << std::endl;
+                std::cout << "Thank you for visiting the library, goodbye!" << std::endl;
+                library.writeBooks(filename);
+                return 0;
             default:
                 break;
             }

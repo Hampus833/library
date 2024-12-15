@@ -27,16 +27,27 @@ void addBook(Library &library)
     std::cout << "Please enter the book's author" << std::endl;
     std::getline(std::cin, author);
 
-    Book newBook(title, author);
+    bool bookExists = checkBookExists(library, title);
 
-    library.addToLibrary(newBook);
-    // library.displayBooks();
-
-    displayMenu();
+    if (bookExists)
+    {
+        std::cout << "Book already exists in the library" << std::endl;
+        library.displayBooks();
+        displayMenu();
+    }
+    else
+    {
+        Book newBook(title, author);
+        library.addToLibrary(newBook);
+        displayMenu();
+    }
 }
 
 void borrowBook(Library &library)
 {
+    std::cout << "Books in library available to borrow" << std::endl;
+    availableBooks(library, 2);
+
     std::string bookToBorrow;
     std::cout << "Please enter the book you want to borrow" << std::endl;
 
@@ -61,7 +72,7 @@ bool checkBookExists(Library &library, std::string bookToCheck)
     std::vector<Book> libraryToCheck = library.getLibrary();
 
     bool bookExists = false;
-    for (Book book : libraryToCheck)
+    for (Book &book : libraryToCheck)
     {
         if (book.getTitle() == bookToCheck)
         {
@@ -73,6 +84,9 @@ bool checkBookExists(Library &library, std::string bookToCheck)
 
 void returnBook(Library &library)
 {
+    std::cout << "Books you have borrowed and can return" << std::endl;
+    availableBooks(library, 3);
+
     std::string bookToReturn;
     std::cout << "Please enter the book you wish to return" << std::endl;
 
@@ -96,4 +110,33 @@ void displayBooks(Library library)
 {
     library.displayBooks();
     displayMenu();
+}
+
+void availableBooks(Library &library, int action)
+{
+    std::vector<Book> checkAvailability = library.getLibrary();
+
+    switch (action)
+    {
+    case 2:
+        for (Book &book : checkAvailability)
+        {
+            if (!book.isBorrowed())
+            {
+                book.displayBook();
+            }
+        }
+        break;
+    case 3:
+        for (Book &book : checkAvailability)
+        {
+            if (book.isBorrowed())
+            {
+                book.displayBook();
+            }
+        }
+        break;
+    default:
+        break;
+    }
 }

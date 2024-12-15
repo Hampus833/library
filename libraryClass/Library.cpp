@@ -56,11 +56,6 @@ void Library::lendBook(std::string title)
         {
             std::cout << "Book is already borrowed" << std::endl;
         }
-        else if (book.getTitle() != title)
-        {
-            std::cout << "Book doesn't exist in library" << std::endl;
-            break;
-        }
     }
 }
 
@@ -76,16 +71,22 @@ void Library::returnBook(std::string title)
         {
             std::cout << "You can't return a book that you haven't borrowed" << std::endl;
         }
-        // else if (book.getTitle() != title)
-        // {
-        //     std::cout << "Book doesn't exist in library" << std::endl;
-        //     break;
-        // }
     }
 }
 
-void writeBooks(std::string filename)
+void Library::writeBooks(std::string filename)
 {
+    std::ofstream file(filename);
+    if (!file)
+    {
+        std::cerr << "File doesn't exist" << std::endl;
+        return;
+    }
+
+    for (Book &book : library)
+    {
+        file << book.getTitle() << "," << book.getAuthor() << ",\n";
+    }
 }
 
 void Library::addToLibrary(Book newBook)
